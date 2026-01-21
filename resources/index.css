@@ -1,0 +1,55 @@
+h1{
+    text-align:left
+    color; rgb:(0, 0, 0);
+    font-family: "kepler-std-semicondensed-sub", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+ul{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+}
+
+li{
+    width: auto;
+    border: 1px solid black;
+    padding: 10pt;
+    list-style-type: none;
+}
+
+li:hover{
+    background-color: grey;
+    color: white;
+}
+
+header{
+    border-bottom: 1px solid black;
+    height: 175px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: auto;
+    text-align: center;
+}
+.grid div{
+    border: 1px solid black;
+}
+
+p{
+    color: rgb(0, 0, 0);
+    font-family: kepler-std-caption, serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+a{
+    text-decoration: none;
+    font-family: kepler-std-semicondensed-cap, serif;
+    font-weight: 400;
+    font-style: normal;
+}
+

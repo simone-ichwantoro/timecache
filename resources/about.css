@@ -1,0 +1,64 @@
+h1{
+    text-align:left
+    color; rgb:(0, 0, 0);
+    font-family: "kepler-std-semicondensed-sub", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+li{
+    width: auto;
+    border: 1px solid black;
+    padding: 10pt;
+    list-style-type: none;
+}
+
+li:hover{
+    background-color: grey;
+    color: white;
+}
+
+header{
+    border-bottom: 1px solid black;
+    height: 175px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: auto;
+    text-align: center;
+}
+.grid div{
+    border: 1px solid black;
+}
+
+p{
+    color: rgb(0, 0, 0);
+    font-family: kepler-std-caption, serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    max-width: 500px;
+    
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  height: 200px;           /* Example height for the container */
+}
+
+a{
+    text-decoration: none;
+    font-family: kepler-std-semicondensed-cap, serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
