@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -14,19 +14,21 @@
 <body>
 <!--If you want to have a header with a graphic 'logo' you make for your archive, a link or menu to navigate to other page(s)-->
 
-
 <header>
-    <h1>time cache</h1>
-<ul>
-   <a href="./about.html"><li>about</li></a>
-   <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWGlavTD5yJ355KccQs674BsFyaG9Xzm3ZHuQ7RHf27Uqsbw/viewform?usp=sharing&ouid=104672141975149265813"><li>submit</li></a>
-   <a href="./contact.html"><li>contact</li></a>
-</ul>
+ <h1>time cache</h1>
 </header>
 
+<header class="side-header-fixed">
+<nav>
+<ul>
+   <li><a href="./about.html">about</a></li>
+   <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfWGlavTD5yJ355KccQs674BsFyaG9Xzm3ZHuQ7RHf27Uqsbw/viewform?usp=sharing&ouid=104672141975149265813">submit</a></li>
+   <li><a href="./contact.html">contact</a></li>
+</ul>
+</nav>
+</header>
 
 <div class="grid">
-
 
 <!-- ****************************************************************************
 Below is javascript for connecting your google sheet to autopopulate the HTML-->
@@ -35,35 +37,88 @@ Below is javascript for connecting your google sheet to autopopulate the HTML-->
 var SPREADSHEET_ID = "1ArmUNaIWol4WJo4rK3i183Ger_1GxY9bKel90wJEVr0"; 
 var TAB_NAME = "Form Responses 1";
 
+// Function to escape HTML to prevent XSS attacks
+function escapeHtml(text) {
+  if (text == null) return '';
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+function loadData() {
+  // Clear existing response accordions
+  $(".grid .response-accordion").remove();
+  
+  $.getJSON("https://opensheet.elk.sh/" + SPREADSHEET_ID + "/" + TAB_NAME, function (data) {
+    console.log(data);
+    
+    data.forEach(function (entry, index) {
+      console.log(entry);
+      
+      // Create a title for the accordion button (use timestamp or first non-empty field)
+      var buttonTitle = entry.Timestamp || entry.best || entry.define || `Response ${index + 1}`;
+      if (buttonTitle.length > 50) {
+        buttonTitle = buttonTitle.substring(0, 47) + '...';
+      }
+      
+      // Create accordion structure for each response
+      var accordionHtml = `
+        <div class="response-accordion">
+          <button class="accordion response-accordion-btn">${escapeHtml(buttonTitle)}</button>
+          <div class="panel response-panel">
+            <div class="response-content">
+              ${entry.best ? `<p>${escapeHtml(entry.best)}</p>` : ''}
+              ${entry.define ? `<p>${escapeHtml(entry.define)}</p>` : ''}
+              ${entry.experience ? `<p>${escapeHtml(entry.experience)}</p>` : ''}
+              ${entry.specific ? `<p>${escapeHtml(entry.specific)}</p>` : ''}
+              ${entry.moment ? `<p>${escapeHtml(entry.moment)}</p>` : ''}
+              ${entry.common ? `<p>${escapeHtml(entry.common)}</p>` : ''}
+              ${entry.perspective ? `<p>${escapeHtml(entry.perspective)}</p>` : ''}
+              ${entry.Timestamp ? `<p>${escapeHtml(entry.Timestamp)}</p>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+      
+      $(accordionHtml).appendTo(".grid");
+    });
+    
+    // Re-initialize accordion functionality for new elements
+    initializeAccordions();
+  }).fail(function(jqxhr, textStatus, error) {
+    console.error("Error loading data:", textStatus, error);
+    $(".grid").append('<div class="response-accordion"><p>Error loading data. Please try again later.</p></div>');
+  });
+}
+
+// Function to initialize accordion functionality
+function initializeAccordions() {
+  // Remove old event listeners by cloning and replacing (for dynamically added elements)
+  $(".response-accordion-btn").off("click").on("click", function() {
+    $(this).toggleClass("active");
+    var panel = $(this).next(".response-panel");
+    if (panel.is(":visible")) {
+      panel.slideUp(300);
+    } else {
+      panel.slideDown(300);
+    }
+  });
+}
 
 $(document).ready(function () {
- $.getJSON("https://opensheet.elk.sh/" + SPREADSHEET_ID + "/" + TAB_NAME, function (data) {
-  
-   console.log(data);
-  
-    data.forEach(function (entry, index) {
-    
-     console.log(entry);
-    
-     $(`<section>
-           <p>` + entry.best + `</p>
-           <p>` + entry.define + `</p>
-           <p>` + entry.experience + `</p>
-           <p>` + entry.specific + `</p>
-           <p>` + entry.moment + `</p>
-           <p>` + entry.common + `</p>
-           <p>` + entry.perspective + `</p>
-           <p>` + entry.Timestamp + `</p>
-        </section>`)
-       .appendTo(".grid");
-   });
- }); 
+  loadData();
 });
 </script>
 
-</div> 
-<!--This code was provided in Avrie Allen's Wintersession course at RISD, Activating Networks, Gathering Knowledge and was initially inspired by Chia Amisola's sheet sites tutorial with Developh-->
+</div>
+    <!--This code was provided in Avrie Allen's Wintersession course at RISD, Activating Networks, Gathering Knowledge and was initially inspired by Chia Amisola's sheet sites tutorial with Developh-->
 
+<script src="resources/script.js"></script>
 </body>
 
 </html>
