@@ -7,8 +7,8 @@ h1{
 
 .year {
     position: fixed;
-    top: 45px;
-    right: 45px;
+    top: 60px;
+    right: 50px;
     color: rgb(0, 0, 0);
     font-family: "kepler-std-semicondensed-sub", serif;
     font-weight: 400;
@@ -31,7 +31,7 @@ li{
 }
 
 li:hover{
-    background-color: grey;
+    background-color: #b4b4b4;
     color: white;
 }
 
@@ -62,16 +62,17 @@ a{
     top: 225px; /* Aligns the header to the top edge */
     height: 100vh; /* Makes the header span the full height of the viewport */
     width: 270px; /* Set the width of your sidebar */
-    border-left: 2px solid black;
-    border-top: 2px solid black;
+    border-left: 2px solid #b4b4b4;
+    border-top: 2px solid #b4b4b4;
     z-index: 1000; /* Ensures sidebar stays on top */
     background-color: white; /* Prevents content from showing through */
     overflow-y: auto; /* Allows scrolling if content is too tall */
+    border-radius: 10px;
 }
 
 body{
     margin: 0;
-    padding-left: 30px;
+    padding-left: 50px;
     padding-right: 310px; /* Adds space for fixed sidebar (270px width + 20px margin) */
 }
 
@@ -80,7 +81,7 @@ padding-top: 200px;
 }
 
 .accordion {
-  background-color: #444;
+  background-color: #ffffff;
   color: white;
   cursor: pointer;
   padding: 18px;
@@ -100,11 +101,11 @@ padding-top: 200px;
 }
 
 .accordion:hover {
-  background-color: #666;
+  background-color: #aaaaaa;
 }
 
 .accordion.active {
-  background-color: #444;
+  background-color: #b4b4b4;
 }
 
 .panel {

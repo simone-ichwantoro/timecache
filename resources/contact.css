@@ -7,8 +7,8 @@ h1{
 
 .year {
     position: fixed;
-    top: 45px;
-    right: 45px;
+    top: 60px;
+    right: 50px;
     color: rgb(0, 0, 0);
     font-family: "kepler-std-semicondensed-sub", serif;
     font-weight: 400;
@@ -47,11 +47,12 @@ header{
     top: 225px; /* Aligns the header to the top edge */
     height: 100vh; /* Makes the header span the full height of the viewport */
     width: 270px; /* Set the width of your sidebar */
-    border-left: 2px solid black;
-    border-top: 2px solid black;
+    border-left: 2px solid #b4b4b4;
+    border-top: 2px solid #b4b4b4;
     z-index: 1000; /* Ensures sidebar stays on top */
     background-color: white; /* Prevents content from showing through */
     overflow-y: auto; /* Allows scrolling if content is too tall */
+    border-radius: 10px;
 }
 
 .grid{

@@ -13,5 +13,4 @@ for (i = 0; i < acc.length; i++) {
       panel.style.maxHeight = panel.scrollHeight + "px";
     }
   })}
-}
 </script>
