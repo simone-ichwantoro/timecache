@@ -1,21 +1,33 @@
 h1{
-    text-align:left;
     color: rgb(0, 0, 0);
     font-family: "kepler-std-semicondensed-sub", serif;
     font-weight: 400;
     font-style: normal;
 }
 
+.year {
+    position: fixed;
+    top: 45px;
+    right: 45px;
+    color: rgb(0, 0, 0);
+    font-family: "kepler-std-semicondensed-sub", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 26px;
+    z-index: 1001;
+}
+
 ul{
     display: flex;
-    justify-content: space-evenly;
+    flex-direction:column;
+    justify-content:space-around;
 }
 
 li{
-    width: auto;
-    border: 1px solid black;
-    padding: 10pt;
+    width:fit-content;
+    padding: 30px;
     list-style-type: none;
+    
 }
 
 li:hover{
@@ -24,8 +36,22 @@ li:hover{
 }
 
 header{
-    border-bottom: 1px solid black;
-    height: 175px;
+    text-align:left;
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+.side-header-fixed {
+    position: fixed; /* Fixes the header's position relative to the browser window */
+    right: 0; /* Aligns the header to the right edge */
+    top: 225px; /* Aligns the header to the top edge */
+    height: 100vh; /* Makes the header span the full height of the viewport */
+    width: 270px; /* Set the width of your sidebar */
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    z-index: 1000; /* Ensures sidebar stays on top */
+    background-color: white; /* Prevents content from showing through */
+    overflow-y: auto; /* Allows scrolling if content is too tall */
 }
 
 .grid{
@@ -59,4 +85,10 @@ a{
     font-family: kepler-std-semicondensed-cap, serif;
     font-weight: 400;
     font-style: normal;
+}
+
+body{
+    margin: 0;
+    padding-left: 30px;
+    padding-right: 290px; /* Adds space for fixed sidebar (270px width + 20px margin) */
 }
